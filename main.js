@@ -43,17 +43,21 @@ function calendar(thisMonth, thisYear = 2019) {
       yearOffset = (year - 2019);
       for (let i = 1; i <= (2019 - year); i++) {
         diffYears.push(2019 - i);
-        if (diffYears[i] % 4 === 0) {
-          leapYears.push(diffYears[i]);
-        }
       }
+      let leapYears = diffYears.filter((yr) => yr % 4 === 0);
       yearOffset -= leapYears.length;
+      if (leapYears.includes(year)) {
+        yearOffset += 1;
+      }
     }
     //adjust daysOffset to account for yearOffset
     for (i = 0; i < 12; i++) {
       daysOffset[i] += yearOffset;
       if ((year % 4 === 0) && (i > 1)) {
-        daysOffset[i] += 1;
+        if (year > 2019) {
+          daysOffset[i] += 1;
+      } else {
+          daysOffset[i] -= 1;
       }
       //correct values to 0-6 for sunday-saturday
       if (daysOffset[i] < 0) {
@@ -90,5 +94,5 @@ function calendar(thisMonth, thisYear = 2019) {
 //call function - calendar(m, yyyy)
 //calendar(2, 2022);
 for (let i = 1; i < 13; i++) {
-  calendar(i, 2040);
+  calendar(i, 2020);
 }
