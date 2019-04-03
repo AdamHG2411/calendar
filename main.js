@@ -38,7 +38,6 @@ function calendar(thisMonth, thisYear = 2019) {
       if (leapYears.includes(year)) {
         yearOffset -= 1;
       }
-    //Trying to get > 2019 working before moving onto this section
     } else if (year < 2019) {
       yearOffset = (year - 2019);
       for (let i = 1; i <= (2019 - year); i++) {
