@@ -53,10 +53,9 @@ function calendar(thisMonth, thisYear = 2019) {
     //adjust daysOffset to account for yearOffset
     for (i = 0; i < 12; i++) {
       daysOffset[i] += yearOffset;
-      if ((year % 4 === 0) && (i > 1)) {
-        if (year > 2019) {
-          daysOffset[i] += 1;
-      } else {
+      if ((year > 2019) && (year % 4 === 0) && (i > 1)) {
+        daysOffset[i] += 1;
+      } else if ((year < 2019) && (year % 4 === 0) && (i < 2)) {
           daysOffset[i] -= 1;
       }
       //correct values to 0-6 for sunday-saturday
@@ -94,5 +93,5 @@ function calendar(thisMonth, thisYear = 2019) {
 //call function - calendar(m, yyyy)
 //calendar(2, 2022);
 for (let i = 1; i < 13; i++) {
-  calendar(i, 2020);
+  calendar(i, 2016);
 }
