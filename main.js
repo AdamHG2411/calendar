@@ -32,11 +32,12 @@ function calendar(thisMonth, thisYear = 2019) {
       yearOffset = (year - 2019);
       for (let i = 1; i <= (year - 2019); i++) {
         diffYears.push(2019 + i);
-        if (diffYears[i] % 4 === 0 && mo > 2) {
-          leapYears.push(diffYears[i]);
-        }
       } 
+      let leapYears = diffYears.filter((yr) => yr % 4 === 0);
+      console.log(diffYears);
+      console.log(leapYears);
       yearOffset += leapYears.length;
+      console.log(leapYears.length);
     } else if (year < 2019) {
       yearOffset = (year - 2019);
       for (let i = 1; i <= (2019 - year); i++) {
@@ -51,6 +52,7 @@ function calendar(thisMonth, thisYear = 2019) {
     //adjust daysOffset to account for yearOffset and correct to 0-6 for weekdays
     for (i = 0; i < 12; i++) {
       daysOffset[i] += yearOffset;
+
       if (daysOffset[i] < 0) {
         while (daysOffset[i] < 0) {
           daysOffset[i] += 7;
@@ -63,6 +65,9 @@ function calendar(thisMonth, thisYear = 2019) {
     }
     //insert empty strings for offset days at start of each month
     for (let i = 0; i < daysOffset[(mo - 1)]; i++) {
+      dates.unshift("  ");
+    }
+    if ((thisYear > 2019) && (thisYear % 4 === 0) && (mo > 2)) {
       dates.unshift("  ");
     }
   }
@@ -83,7 +88,7 @@ function calendar(thisMonth, thisYear = 2019) {
   }
 }
 //call function - calendar(m, yyyy)
+calendar(2, 2022);
 /*for (let i = 1; i < 13; i++) {
-  calendar(i);
+  calendar(i, 2020);
 }*/
-calendar(3);
