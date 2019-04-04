@@ -33,6 +33,7 @@ function calendar(thisMonth, thisYear = 2019) {
       for (let i = 1; i <= (year - 2019); i++) {
         diffYears.push(2019 + i);
       } 
+      //Need to update this line to account for 100-year and 400-year leap year discrepancies
       let leapYears = diffYears.filter((yr) => yr % 4 === 0);
       yearOffset += leapYears.length;
       if (leapYears.includes(year)) {
@@ -90,7 +91,7 @@ function calendar(thisMonth, thisYear = 2019) {
   }
 }
 //call function - calendar(m, yyyy)
-//calendar(2, 2022);
-for (let i = 1; i < 13; i++) {
-  calendar(i, 2016);
-}
+calendar(11, 1899);
+/*for (let i = 1; i < 13; i++) {
+  calendar(i, 1990);
+}*/
